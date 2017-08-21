@@ -2,12 +2,12 @@
 	<div class="sign_in">
 		<mt-field label="用户名" v-model="username"></mt-field>
 		<mt-field label="密码" type="password" v-model="password"></mt-field>
-		<mt-button type="primary" size="normal">登录</mt-button>
-		<mt-button type="primary" size="normal">取消</mt-button>
+		<router-link to="/SignIn"><mt-button type="primary" size="normal">登录</mt-button></router-link>
+		<router-link to="/Home"><mt-button type="primary" size="normal">取消</mt-button></router-link>
 		<p>
 			<mt-button type="default" size="small">忘记密码</mt-button>
 			<span class="or">|</span>
-			<mt-button type="default" size="small">注册</mt-button>
+			<router-link to="/SignUp"><mt-button type="default" size="small">注册</mt-button></router-link>
 		</p>				
 	</div>
 </template>
@@ -37,8 +37,8 @@ html,body {
 .sign_in {
 	background-color:rgba(0,0,0,0.2);
 	height: 100%;
-	margin: 150px 10px;
-	padding: 20px 10px;
+	margin: 9.375rem 0.625rem;
+	padding: 1.25rem 0.625rem;
 }
 .mint-cell-wrapper {
 	background-color:rgba(0,0,0,0.2);

@@ -5,11 +5,11 @@
 		<mt-field label="确认密码" placeholder="请确认密码" type="password" v-model="repassword"></mt-field>
 		<mt-field label="手机号" placeholder="请输入手机号" type="tel" v-model="phone"></mt-field>
 		<mt-field label="验证码" v-model="captcha"></mt-field>
-		<mt-button type="primary" size="large">注册</mt-button>	
+		<router-link to="/SignUp"><mt-button type="primary" size="large">注册</mt-button></router-link>	
 		<p>
-			<mt-button type="default" size="small">登录</mt-button>
+			<router-link to="/SignIn"><mt-button type="default" size="small">登录</mt-button></router-link>
 			<span class="or">|</span>
-			<mt-button type="default" size="small">取消</mt-button>
+			<router-link to="/Home"><mt-button type="default" size="small">取消</mt-button></router-link>
 		</p>				
 	</div>
 </template>
@@ -42,7 +42,7 @@ html,body {
 .sign_up {
 	background-color:rgba(0,0,0,0.2);
 	margin: auto;
-	padding: 20px 10px;
+	padding: 1.25rem 0.625rem;
 }
 .mint-cell-wrapper {
 	background-color:rgba(0,0,0,0.2);
