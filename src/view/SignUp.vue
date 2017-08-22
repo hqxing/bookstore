@@ -7,7 +7,7 @@
 			<mt-field label="确认密码" placeholder="请确认密码" type="password" v-model="repassword"></mt-field>
 			<mt-field label="手机号" placeholder="请输入手机号" type="tel" v-model="phone"></mt-field>
 			<mt-field label="验证码" v-model="captcha"></mt-field>
-			<router-link to="/SignUp"><mt-button type="primary" size="large">注册</mt-button></router-link>	
+			<router-link to="/Home"><mt-button type="primary" size="large">注册</mt-button></router-link>	
 			<p>
 				<router-link to="/SignIn"><mt-button type="default" size="small">登录</mt-button></router-link>
 				<span class="or">|</span>
@@ -75,5 +75,11 @@ export default {
 }
 .mint-button::after{
 	background-color:rgba(0,0,0,0.8);
+}
+div a{
+	text-decoration: none;
+}
+p a{
+	text-decoration: none;
 }
 </style>

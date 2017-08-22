@@ -45,7 +45,7 @@ export default {
     }
 }
 </script>
-<style scoped>
+<style>
 .home_header{
   position: absolute;
   width: 100%;

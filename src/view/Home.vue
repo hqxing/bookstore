@@ -24,11 +24,15 @@
       <mt-swipe-item class="swip-item-3 item"><img src="../assets/images/03.jpg" alt=""></mt-swipe-item>
     </mt-swipe>
   </div>
-	
+	<!-- 脚部导航 -->
+  <div class="home_footer">
+    <bstabbar></bstabbar>     
+  </div> 
 </div>
 </template>
 <script>
 import bsheader from '../components/bs-header.vue'
+import bstabbar from '../components/bs-tabbar.vue'
 export default {
   name: 'Home',
   data () {
@@ -38,7 +42,8 @@ export default {
     }
   },
   components:{
-      bsheader
+      bsheader,
+      bstabbar
   },
   methods: {
     handleChange(index) {
@@ -56,23 +61,33 @@ export default {
 }
 .home_search_bar{
   position: fixed;
-  width: 98%;
+  width: 100%;
   height: 10%;
+  margin: auto;
   top: 5%;
 } 
 .mint-search{
   position: relative;
-  width: 98%;
-  top: 5%;
-   
+  width: 96%;
+  top: 10%;  
 }
 .mint-searchbar {
  color: #f3f1f1 ;
 }
 .home_swipe {
-  position: fixed;
-  width: 100%;
+  position: relative;
+  width: 96%;
   height: 30%;
-  top: 15%;
+  top: 13%;
+}
+.home_footer{
+ position: fixed;
+  width: 96%;
+  height: 10%;
+  bottom: 0;
+}
+div a:link{
+  text-decoration: none;
+  color: #2c3e50;
 }
 </style>

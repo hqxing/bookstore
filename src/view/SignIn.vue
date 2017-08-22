@@ -79,4 +79,10 @@ export default {
 .mint-button::after{
 	background-color:rgba(0,0,0,0.8);
 }
+div a{
+	text-decoration: none;
+}
+p a{
+	text-decoration: none;
+}
 </style>
