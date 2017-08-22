@@ -1,22 +1,23 @@
 <template>
 <div class="home">
   <!-- 头部 -->
-  <div class="home_header">
-    <mt-header fixed title="欢迎您">
-      <mt-button icon="more" slot="right" @click="handleMore"></mt-button>
-    </mt-header> 
-    <!-- 更多菜单栏 -->
-    <div class="home_more_options" v-show="showMoreOptions">
-    <router-link to="/SignIn"><mt-button type="primary" @click="handleSignIn">登录</mt-button></router-link>
-    <router-link to="/SignUp"><mt-button type="primary" @click="handleSignUp">注册</mt-button></router-link>                                   
-    </div>
+  <bsheader></bsheader>
+<!--   <div class="home_header">
+  <mt-header fixed title="欢迎您">
+    <mt-button icon="more" slot="right" @click="handleMore"></mt-button>
+  </mt-header> 
+  更多菜单栏
+  <div class="home_more_options" v-show="showMoreOptions">
+  <router-link to="/SignIn"><mt-button type="primary" @click="handleSignIn">登录</mt-button></router-link>
+  <router-link to="/SignUp"><mt-button type="primary" @click="handleSignUp">注册</mt-button></router-link>                                   
   </div>
+</div> -->
   <!-- 搜素 -->
-  <div class="home-search-bar">
+  <div class="home_search_bar">
     <mt-search v-model="value" cancel-text="取消" placeholder="搜索"></mt-search> 
   </div>   
   <!-- 轮播 -->
-  <div class="home-swipe">
+  <div class="home_swipe">
     <mt-swipe :auto="2000" @change="handleChange">
       <mt-swipe-item class="swip-item-1 item"><img src="../assets/images/01.jpg" alt=""></mt-swipe-item>
       <mt-swipe-item class="swip-item-2 item"><img src="../assets/images/02.jpg" alt=""></mt-swipe-item>
@@ -27,6 +28,7 @@
 </div>
 </template>
 <script>
+import bsheader from '../components/bs-header.vue'
 export default {
   name: 'Home',
   data () {
@@ -35,71 +37,42 @@ export default {
       showMoreOptions:false
     }
   },
+  components:{
+      bsheader
+  },
   methods: {
-    /*点击头部更多*/
-    handleMore() {
-      console.log("成功点击头部更多");
-      /*this.showMoreOptions=true;*/
-      this.showMoreOptions=!this.showMoreOptions;
-    },
-    handleSignIn() {
-      console.log('登录');
-      this.showMoreOptions=false;
-    },
-    handleSignUp() {
-      console.log('注册');
-      this.showMoreOptions=false;
-    },
     handleChange(index) {
       //console.log(index)
     }
 
-}
+  }
 }
 </script>
-<style scope>
-#app{
-  margin-top: 2.5rem;
-}
+<style scoped>
 .home{
 	width: 100%;
+  height: 100%;
+  position: fixed;
 }
-.home_header{
-  width: 100%;
-  height: auto;
-  position: absolute;
-}
-.home_more_options{
-  width: 4rem;
-  height: auto;
-  background: #26a2ff;
-  display: block;
-  position: absolute;
-  right:0rem; 
-  z-index: 2;
-}
-.mint-button{
-  padding-right: 3px;
-}
-/* .mint-button::after{
-  width: 4rem;
-  height: auto;
-  background: #26a2ff;
-  display: block;
-  position: absolute;
-  right:0rem; 
-  z-index: 2;
-} */
-.home-search-bar{
-  height: 3.25rem;
+.home_search_bar{
+  position: fixed;
+  width: 98%;
+  height: 10%;
+  top: 5%;
 } 
 .mint-search{
-  height: auto;
+  position: relative;
+  width: 98%;
+  top: 5%;
+   
 }
 .mint-searchbar {
  color: #f3f1f1 ;
 }
-.home-swipe {
-  height: 15.4375rem;
+.home_swipe {
+  position: fixed;
+  width: 100%;
+  height: 30%;
+  top: 15%;
 }
 </style>
