@@ -5,7 +5,7 @@
 		    <mt-field label="用户名" v-model="username"></mt-field>
 		    <mt-field label="密码" type="password" v-model="password"></mt-field>
 		    <router-link to="/SignIn"><mt-button type="primary" size="normal">登录</mt-button></router-link>
-		    <router-link to="/Home"><mt-button type="primary" size="normal">取消</mt-button></router-link>
+		    <router-link to="/BookStore/Home"><mt-button type="primary" size="normal">取消</mt-button></router-link>
 		    <p>
 		    	<mt-button type="default" size="small">忘记密码</mt-button>
 		    	<span class="or">|</span>
@@ -31,7 +31,7 @@ export default {
 	width: 100%;
 	height: 100%;
 	margin: 0;
-	background: url('https://hbimg.b0.upaiyun.com/ae7b3147210321f0fa0345980c68b37c518c2c267ae7a-nW02Ng_fw658') fixed center;
+	background: url('https://hbimg.b0.upaiyun.com/e99ffef4c8982eb5d9a27d763694ca3f880907237d63e-5pob05_fw658') fixed center;
 	background-size: cover; 
 	text-align: center;
 	position: fixed;

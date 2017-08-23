@@ -4,7 +4,7 @@
     	<mt-header fixed title="欢迎您">
       		<mt-button icon="more" slot="right" @click="handleMore"></mt-button>
     	</mt-header> 
-        <div class="home_more_options" v-show="showMoreOptions">
+      <div class="home_more_options" v-show="showMoreOptions">
             <ul>
                 <li>
                     <router-link to="/SignIn"><mt-button type="primary" @click="handleSignIn">登录</mt-button></router-link>
@@ -13,8 +13,8 @@
                     <router-link to="/SignUp"><mt-button type="primary" @click="handleSignUp">注册</mt-button></router-link> 
                 </li>
             </ul>                         
-        </div>
-    </div>
+      </div> 
+  </div>
 </template>
 
 <script>
@@ -45,16 +45,18 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 .home_header{
-  position: absolute;
+  position: relative;
   width: 100%;
-  height: 10%;  
+  height: 10%; 
 } 
 .home_more_options{
   width: 10%;
   height: 10%;
-  background: #26a2ff;  
+  background: #26a2ff;
+  margin: 0px;
+  padding: 0px;
 } 
 .home_more_options ul{
   background: #26a2ff;
@@ -63,6 +65,8 @@ export default {
   right:0rem; 
   z-index: 2;
   text-align: center;
+  margin-top: -5%;
+  padding: 0px;
 }
 .home_more_options ul li{
     list-style: none;

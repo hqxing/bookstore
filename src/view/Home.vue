@@ -1,17 +1,6 @@
 <template>
+<!-- 首页 -->
 <div class="home">
-  <!-- 头部 -->
-  <bsheader></bsheader>
-<!--   <div class="home_header">
-  <mt-header fixed title="欢迎您">
-    <mt-button icon="more" slot="right" @click="handleMore"></mt-button>
-  </mt-header> 
-  更多菜单栏
-  <div class="home_more_options" v-show="showMoreOptions">
-  <router-link to="/SignIn"><mt-button type="primary" @click="handleSignIn">登录</mt-button></router-link>
-  <router-link to="/SignUp"><mt-button type="primary" @click="handleSignUp">注册</mt-button></router-link>                                   
-  </div>
-</div> -->
   <!-- 搜素 -->
   <div class="home_search_bar">
     <mt-search v-model="value" cancel-text="取消" placeholder="搜索"></mt-search> 
@@ -24,28 +13,26 @@
       <mt-swipe-item class="swip-item-3 item"><img src="../assets/images/03.jpg" alt=""></mt-swipe-item>
     </mt-swipe>
   </div>
-	<!-- 脚部导航 -->
-  <div class="home_footer">
-    <bstabbar></bstabbar>     
-  </div> 
 </div>
+  <!-- 流行 -->
+<!--   <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
+  <ul>
+    <li v-for="item in list">{{ item }}</li>
+  </ul>
+</mt-loadmore> -->
 </template>
+
 <script>
-import bsheader from '../components/bs-header.vue'
-import bstabbar from '../components/bs-tabbar.vue'
 export default {
   name: 'Home',
   data () {
     return {
-      value:"aa",
-      showMoreOptions:false
+      /*要搜索的值*/
+      value:' '
     }
   },
-  components:{
-      bsheader,
-      bstabbar
-  },
   methods: {
+    /*轮播*/
     handleChange(index) {
       //console.log(index)
     }
@@ -55,9 +42,9 @@ export default {
 </script>
 <style scoped>
 .home{
-	width: 100%;
-  height: 100%;
-  position: fixed;
+	width: 50%;
+  height: 50%;
+  position: position
 }
 .home_search_bar{
   position: fixed;
@@ -75,10 +62,10 @@ export default {
  color: #f3f1f1 ;
 }
 .home_swipe {
-  position: relative;
+  position: absolute;
   width: 96%;
   height: 30%;
-  top: 13%;
+  top: 14%;
 }
 .home_footer{
  position: fixed;

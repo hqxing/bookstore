@@ -11,7 +11,7 @@
 			<p>
 				<router-link to="/SignIn"><mt-button type="default" size="small">登录</mt-button></router-link>
 				<span class="or">|</span>
-				<router-link to="/Home"><mt-button type="default" size="small">取消</mt-button></router-link>
+				<router-link to="/BookStore/Home"><mt-button type="default" size="small">取消</mt-button></router-link>
 			</p>
 		</div>					
 	</div>
