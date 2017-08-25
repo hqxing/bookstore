@@ -5,12 +5,15 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import App from './App'
 import router from './router'
+import VueResource from 'vue-resource' 
+
 // import './assets/css/mui.css'
 // import './assets/fonts/mui.ttf'
 // import './assets/css/test.css'
 // import './assets/js/mui.js'
 
 Vue.use(MintUI)
+Vue.use(VueResource);
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

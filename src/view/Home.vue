@@ -13,30 +13,86 @@
       <mt-swipe-item class="swip-item-3 item"><img src="../assets/images/03.jpg" alt=""></mt-swipe-item>
     </mt-swipe>
   </div>
-</div>
+
   <!-- 流行 -->
-<!--   <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
-  <ul>
-    <li v-for="item in list">{{ item }}</li>
-  </ul>
-</mt-loadmore> -->
+  <!-- <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore"> -->
+  <div class="ab">
+    <ul>
+      <!-- <li v-for="item in activityList.locs">{{ item.name }}</li> -->
+      <li v-for="item in activityList.subjects"><p v-for="item in item.casts"><img :src="item.avatars.small" alt=""></p></li>
+    </ul>
+  </div>
+
+ <!--  </mt-loadmore> -->
+
+ <!--  <div>
+   <img v-model="image">{{image}}</img>
+   <p>{{loc_name}}</p>
+ </div> -->
+
+ </div> 
 </template>
 
 <script>
+import {api} from '../global/api';
 export default {
   name: 'Home',
   data () {
     return {
       /*要搜索的值*/
-      value:' '
+      value:' ',
+      allLoaded:false, //全部加载
+      page:0, //默认的流行内容起始页
+      activityList:[]
+      //activityList
     }
   },
+  mounted() {
+    var vm = this;
+    /*活动列表*/
+    vm.getList();
+  },
   methods: {
+    /*请求活动列表*/
+    getList (page) {
+        var vm = this;
+        vm.$http.get(api.activity_list).then((response) => {
+        // 响应成功回调       
+        console.log(response)
+        vm.activityList = response.body;
+        console.log(vm.activityList)
+      }, (response) => {
+        // 响应错误回调
+        console.log('失败回调')    
+      })
+    },   
+    //return false;
     /*轮播*/
     handleChange(index) {
       //console.log(index)
-    }
-
+    },
+    /*loadTop:function(){
+      console.log(this.page);
+      //默认是第三页，下拉刷新的时候获取第一页
+      //this.page=1;
+      this.getList(this.page);
+      this.$refs.loadmore.onTopLoaded(); //手动调用，组件定位
+      this.$refs.loadmore.onBottomLoaded();
+      console.log("上拉执行");
+    },
+    loadMore:function(){
+      console.log("loadMore");                 
+    },
+    loadBottom:function() {
+      console.log("下拉在执行");
+      this.page=this.page+1;             
+      console.log("this.page:"+this.page);
+      this.getList(this.page);
+      if(this.page==20){
+        this.allLoaded=true;  //当所有数据 全部读取完成的时候 停止下拉读取数据 
+        //this.$refs.loadmore.onBottomLoaded();
+      }  
+    }*/
   }
 }
 </script>
@@ -76,5 +132,8 @@ export default {
 div a:link{
   text-decoration: none;
   color: #2c3e50;
+}
+.ab{
+  margin: 10px;
 }
 </style>
