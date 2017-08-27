@@ -15,21 +15,16 @@
   </div>
 
   <!-- 流行 -->
-  <!-- <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore"> -->
-  <div class="ab">
-    <ul>
-      <!-- <li v-for="item in activityList.locs">{{ item.name }}</li> -->
-      <li v-for="item in activityList.subjects"><p v-for="item in item.casts"><img :src="item.avatars.small" alt=""></p></li>
-    </ul>
+  <div class="popular">
+    <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :max-distance="150" @top-status-change="handleTopChange" ref="loadmore">  
+      <ul>
+        <li v-for="item in popular_books_list.books">
+          <img :src="item.image" alt="">
+          <span>{{item.title}}</span>
+        </li>
+      </ul>
+    </mt-loadmore>
   </div>
-
- <!--  </mt-loadmore> -->
-
- <!--  <div>
-   <img v-model="image">{{image}}</img>
-   <p>{{loc_name}}</p>
- </div> -->
-
  </div> 
 </template>
 
@@ -41,10 +36,16 @@ export default {
     return {
       /*要搜索的值*/
       value:' ',
-      allLoaded:false, //全部加载
-      page:0, //默认的流行内容起始页
-      activityList:[]
-      //activityList
+      searchCondition:{  //分页属性  
+          pageNo:"1",  
+          pageSize:"10"  
+      },  
+      popular_books_list:{
+        books:[]
+      },
+      allLoaded: false, //是否可以上拉属性，false可以上拉，true为禁止上拉，就是不让往上划加载数据了  
+      scrollMode:"auto" //移动端弹性滚动效果，touch为弹性滚动，auto是非弹性滚动  
+
     }
   },
   mounted() {
@@ -53,33 +54,25 @@ export default {
     vm.getList();
   },
   methods: {
-    /*请求活动列表*/
-    getList (page) {
+    /*请求流行书榜*/
+    getList () {
         var vm = this;
-        vm.$http.get(api.activity_list).then((response) => {
+        vm.$http.get(api.popular_books_list,{typeFlag:'1'}).then((response) => {
         // 响应成功回调       
         console.log(response)
-        vm.activityList = response.body;
-        console.log(vm.activityList)
+        let data= response.body;
+        vm.popular_books_list = data.data;
+        console.log(vm.popular_books_list)
       }, (response) => {
         // 响应错误回调
         console.log('失败回调')    
       })
     },   
-    //return false;
     /*轮播*/
     handleChange(index) {
       //console.log(index)
     },
-    /*loadTop:function(){
-      console.log(this.page);
-      //默认是第三页，下拉刷新的时候获取第一页
-      //this.page=1;
-      this.getList(this.page);
-      this.$refs.loadmore.onTopLoaded(); //手动调用，组件定位
-      this.$refs.loadmore.onBottomLoaded();
-      console.log("上拉执行");
-    },
+
     loadMore:function(){
       console.log("loadMore");                 
     },
@@ -88,11 +81,11 @@ export default {
       this.page=this.page+1;             
       console.log("this.page:"+this.page);
       this.getList(this.page);
-      if(this.page==20){
+      if(this.page==10){
         this.allLoaded=true;  //当所有数据 全部读取完成的时候 停止下拉读取数据 
         //this.$refs.loadmore.onBottomLoaded();
       }  
-    }*/
+    }
   }
 }
 </script>
@@ -123,6 +116,23 @@ export default {
   height: 30%;
   top: 14%;
 }
+.popular{
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  top: 45%;
+}
+.popular ul{
+  width: 96%;
+  height: 100%;
+}
+.popular ul li{
+  list-style: none;
+}
+ .popular img{
+  width: 6rem;
+  height: 8rem;
+} 
 .home_footer{
  position: fixed;
   width: 96%;
@@ -133,7 +143,5 @@ div a:link{
   text-decoration: none;
   color: #2c3e50;
 }
-.ab{
-  margin: 10px;
-}
+
 </style>
