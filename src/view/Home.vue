@@ -16,14 +16,16 @@
 
   <!-- 流行 -->
   <div class="popular">
-    <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :max-distance="150" @top-status-change="handleTopChange" ref="loadmore">  
-      <ul>
+<!--     <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :max-distance="150" @top-status-change="handleTopChange" ref="loadmore">   -->
+      <ul v-infinite-scroll="loadMore"
+          infinite-scroll-disabled="loading"
+          infinite-scroll-distance="5">
         <li v-for="item in popular_books_list.books">
           <img :src="item.image" alt="">
           <span>{{item.title}}</span>
         </li>
       </ul>
-    </mt-loadmore>
+<!--     </mt-loadmore> -->
   </div>
  </div> 
 </template>
@@ -36,15 +38,15 @@ export default {
     return {
       /*要搜索的值*/
       value:' ',
-      searchCondition:{  //分页属性  
-          pageNo:"1",  
-          pageSize:"10"  
-      },  
+     // searchCondition:{  //分页属性  
+    //    pageNo:"1",  
+    //      pageSize:"10"  
+    //  },  
       popular_books_list:{
         books:[]
       },
-      allLoaded: false, //是否可以上拉属性，false可以上拉，true为禁止上拉，就是不让往上划加载数据了  
-      scrollMode:"auto" //移动端弹性滚动效果，touch为弹性滚动，auto是非弹性滚动  
+      //allLoaded: false, //是否可以上拉属性，false可以上拉，true为禁止上拉，就是不让往上划加载数据了  
+      //scrollMode:"auto" //移动端弹性滚动效果，touch为弹性滚动，auto是非弹性滚动  
 
     }
   },
@@ -72,11 +74,15 @@ export default {
     handleChange(index) {
       //console.log(index)
     },
+    /*加载更多*/
+   /* handleTopChange(){
 
-    loadMore:function(){
+    },*/
+
+   /* loadMore:function(){
       console.log("loadMore");                 
-    },
-    loadBottom:function() {
+    },*/
+   /* loadBottom:function() {
       console.log("下拉在执行");
       this.page=this.page+1;             
       console.log("this.page:"+this.page);
@@ -85,7 +91,20 @@ export default {
         this.allLoaded=true;  //当所有数据 全部读取完成的时候 停止下拉读取数据 
         //this.$refs.loadmore.onBottomLoaded();
       }  
+    }*/
+    /*滚动条*/
+    loadMore() {
+      var lm=this.popular_books_list;
+      lm.loading = true;
+      setTimeout(() => {
+        let last = lm.books[lm.books.length - 1];
+        for (let i = 1; i <= 10; i++) {
+          lm.books.push(last + i);
+        }
+        lm.loading = false;
+      }, 2500);
     }
+
   }
 }
 </script>
@@ -123,16 +142,22 @@ export default {
   top: 45%;
 }
 .popular ul{
-  width: 96%;
+  width: 100%;
   height: 100%;
 }
 .popular ul li{
+  width: 100%;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
- .popular img{
-  width: 6rem;
-  height: 8rem;
+ .popular ul li img{
+  width: 40%;
+  height: 7rem;
 } 
+.popular ul li span{
+  width: 60%;
+}
 .home_footer{
  position: fixed;
   width: 96%;
