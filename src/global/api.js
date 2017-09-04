@@ -26,7 +26,10 @@ export const api = {
             //"activity_list":"/v2/event/list"  //获取活动列表
             //"activity_list":"/v2/loc/108288"
            //"activity_list":url.staticPath+"dataJson/list.json", 
-           "popular_books_list":"/example_qxing/popular_books_list" 
+           //"popular_books_list":"/example_qxing/popular_books_list",
+          // http://www.easy-mock.com/mock/59a765e44006183e48ed4cbe/bookstore/books_popular
+           "books_popular_list":"/bookstore/books_popular_list"
+           //"":"" 
 
            
 }
