@@ -37,11 +37,11 @@ module.exports = {
                   '^/v2': '/v2'
                 }
         },
-        '/example_qxing': {
-                target: 'http://www.easy-mock.com/mock/59a221cc960a33213d9feca2',
+        '/bookstore': {
+                target: 'http://www.easy-mock.com/mock/59a765e44006183e48ed4cbe',
                 changeOrigin : true,
                 pathRewrite: {
-                  '^/example_qxing': '/example_qxing'
+                  '^/bookstore': '/bookstore'
                 }
         },
         '/books_classification': {

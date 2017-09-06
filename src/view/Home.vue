@@ -15,8 +15,11 @@
   </div>
 
   <!-- 流行 -->
+   
   <div class="popular">
+ <p v-model="books_popular_list" class="popular_title">{{books_popular_list.tags}}</p>
 <!--     <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :max-distance="150" @top-status-change="handleTopChange" ref="loadmore">   -->
+<<<<<<< HEAD
      <!--  <ul v-infinite-scroll="loadMore"
          infinite-scroll-disabled="loading"
          infinite-scroll-distance="5">
@@ -36,6 +39,20 @@
 
 
 
+=======
+   <!-- <ul v-infinite-scroll="loadMore"
+       infinite-scroll-disabled="loading"
+       infinite-scroll-distance="10"> -->
+       <div  class="popular_list">
+         <ul>
+        <li v-for="item in books_popular_list.books">
+         <img :src="item.images.medium" alt="">
+          <span>{{item.title}}</span>
+        </li>
+   </ul> 
+       </div>
+     
+>>>>>>> 45ed030342551645516a7775bdd73ae564ee797d
 <!--     </mt-loadmore> -->
   </div>
  </div> 
@@ -53,9 +70,11 @@ export default {
     //    pageNo:"1",  
     //      pageSize:"10"  
     //  },  
-      popular_books_list:{
+      books_popular_list:{
+        tags:'liuxing',
         books:[]
       },
+
       //allLoaded: false, //是否可以上拉属性，false可以上拉，true为禁止上拉，就是不让往上划加载数据了  
       //scrollMode:"auto" //移动端弹性滚动效果，touch为弹性滚动，auto是非弹性滚动  
 
@@ -65,17 +84,18 @@ export default {
     var vm = this;
     /*活动列表*/
     vm.getList();
+   // vm.loadMore();
   },
   methods: {
     /*请求流行书榜*/
     getList () {
         var vm = this;
-        vm.$http.get(api.popular_books_list,{typeFlag:'1'}).then((response) => {
+        vm.$http.get(api.books_popular_list,{typeFlag:'1'}).then((response) => {
         // 响应成功回调       
         console.log(response)
         let data= response.body;
-        vm.popular_books_list = data.data;
-        console.log(vm.popular_books_list)
+        vm.books_popular_list = data.data;
+        console.log(vm.books_popular_list)
       }, (response) => {
         // 响应错误回调
         console.log('失败回调')    
@@ -104,17 +124,18 @@ export default {
       }  
     }*/
     /*滚动条*/
-    loadMore() {
-      var lm=this.popular_books_list;
-      lm.loading = true;
-      setTimeout(() => {
-        let last = lm.books[lm.books.length - 1];
-        for (let i = 1; i <= 10; i++) {
-          lm.books.push(last + i);
-        }
-        lm.loading = false;
-      }, 2500);
-    }
+    // loadMore() {
+    //   var lm=this.books_popular_list;
+    //   console.log("lm",books_popular_list);
+    //   lm.loading = true;
+    //   setTimeout(() => {
+    //     let last = lm.books[lm.books.length - 1];
+    //     for (let i = 1; i <= 10; i++) {
+    //       lm.books.push(last + i);
+    //     }
+    //     lm.loading = false;
+    //   }, 2500);
+    // }
 
   }
 }
@@ -122,8 +143,8 @@ export default {
 <style scoped>
 .home{
 	width: 50%;
-  height: 50%;
-  position: position
+  height: 100%;
+  /* position: absolute; */
 }
 .home_search_bar{
   position: fixed;
@@ -141,7 +162,7 @@ export default {
  color: #f3f1f1 ;
 }
 .home_swipe {
-  position: absolute;
+  position: fixed;
   width: 96%;
   height: 30%;
   top: 14%;
@@ -166,26 +187,48 @@ export default {
 }
 
 .popular{
-  position: absolute;
+  position: absolute; 
   width: 100%;
-  height: 50%;
+  height: 45%;
   top: 45%;
 }
-.popular ul{
+.popular p{
+  position: absolute;
+  width: 100%;
+  height: 2rem;
+  background-color: yellow;
+  font-size:2rem;
+  line-height: 2rem;
+  top: 0;
+}
+.popular_list{
+  position: absolute; 
   width: 100%;
   height: 100%;
+  top: 15%;
+      overflow-y: scroll;
+      overflow-x: hidden; 
 }
-.popular ul li{
+.popular_list ul{
+  position: absolute; 
+top: 40%;
+  width: 100%;
+  height: 100%;
+
+  
+
+}
+.popular_list ul li{
   width: 100%;
   list-style: none;
   margin: 0;
   padding: 0;
 }
- .popular ul li img{
-  width: 40%;
-  height: 7rem;
+/*  .popular ul li img{
+ width: 40%;
+ height: 7rem;
 } 
-.popular ul li span{
+*/.popular_list ul li span{
   width: 60%;
 }
 .home_footer{
