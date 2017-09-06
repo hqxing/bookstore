@@ -17,14 +17,25 @@
   <!-- 流行 -->
   <div class="popular">
 <!--     <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :max-distance="150" @top-status-change="handleTopChange" ref="loadmore">   -->
-      <ul v-infinite-scroll="loadMore"
-          infinite-scroll-disabled="loading"
-          infinite-scroll-distance="5">
-        <li v-for="item in popular_books_list.books">
-          <img :src="item.image" alt="">
-          <span>{{item.title}}</span>
-        </li>
-      </ul>
+     <!--  <ul v-infinite-scroll="loadMore"
+         infinite-scroll-disabled="loading"
+         infinite-scroll-distance="5">
+       <li v-for="item in popular_books_list.books">
+         <img :src="item.image" alt="">
+         <span>{{item.title}}</span>
+       </li>
+     </ul> -->
+    <div v-infinite-scroll="loadMore"
+         infinite-scroll-disabled="loading"
+         infinite-scroll-distance="5">
+      <div v-for="item in popular_books_list.books"  class="novel_content">
+        <div class="novel_list_left"><img :src="item.image" alt=""></div>
+        <div class="novel_list_right"><span>{{item.title}}</span></div>      
+      </div>     
+    </div>
+
+
+
 <!--     </mt-loadmore> -->
   </div>
  </div> 
@@ -135,6 +146,25 @@ export default {
   height: 30%;
   top: 14%;
 }
+
+.novel_content{
+  width: 100%;
+  display: block;
+}
+.novel_list_left{
+  width: 20%;
+  margin: 1%;
+  float: left;
+  display: block;
+}  
+.novel_list_right{
+  width: 80%;
+  margin: 1%;
+  margin-left: 22%;
+  float: left; 
+  display: block;  
+}
+
 .popular{
   position: absolute;
   width: 100%;

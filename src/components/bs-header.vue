@@ -1,10 +1,10 @@
 <template>
 <!-- 导航头部 -->
-	<div class="home_header">
+	<div class="bookstore_header">
     	<mt-header fixed title="欢迎您">
       		<mt-button icon="more" slot="right" @click="handleMore"></mt-button>
     	</mt-header> 
-      <div class="home_more_options" v-show="showMoreOptions">
+      <div class="bookstore_more_options" v-show="showMoreOptions">
             <ul>
                 <li>
                     <router-link to="/SignIn"><mt-button type="primary" @click="handleSignIn">登录</mt-button></router-link>
@@ -46,19 +46,23 @@ export default {
 }
 </script>
 <style scoped>
-.home_header{
-  position: relative;
+.bookstore_header{
+  position: absolute;
   width: 100%;
-  height: 10%; 
+  height: 6%; 
+  top: 0;
+  right: 0;
+  left: 0;
 } 
-.home_more_options{
-  width: 10%;
+.bookstore_more_options{
+  width: 18%;
   height: 10%;
-  background: #26a2ff;
-  margin: 0px;
-  padding: 0px;
+ /*  background: #26a2ff; */
+  position: absolute;
+  top: 60%;
+  right: 0;
 } 
-.home_more_options ul{
+.bookstore_more_options ul{
   background: #26a2ff;
   display: block;
   position: absolute;
@@ -68,7 +72,7 @@ export default {
   margin-top: -5%;
   padding: 0px;
 }
-.home_more_options ul li{
+.bookstore_more_options ul li{
     list-style: none;
     text-align: center;
 }

@@ -26,7 +26,10 @@ export const api = {
             //"activity_list":"/v2/event/list"  //获取活动列表
             //"activity_list":"/v2/loc/108288"
            //"activity_list":url.staticPath+"dataJson/list.json", 
-           "popular_books_list":"/example_qxing/popular_books_list" 
+           "popular_books_list":"/example_qxing/popular_books_list" ,
+           "novel_list":"/books_classification/novel",
+           "history_list":"/books_classification/history",
+           "travel_list":"/books_classification/travel",
 
            
 }

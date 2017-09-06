@@ -43,7 +43,15 @@ module.exports = {
                 pathRewrite: {
                   '^/example_qxing': '/example_qxing'
                 }
+        },
+        '/books_classification': {
+                target: 'http://www.easy-mock.com/mock/59a765e44006183e48ed4cbe/bookstore',
+                changeOrigin : true,
+                pathRewrite: {
+                  '^/books_classification': '/books_classification'
+                }
         }
+
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

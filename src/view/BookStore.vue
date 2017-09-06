@@ -10,9 +10,9 @@
   		</div>
 
   		<!-- 脚部导航 -->
-  		<div class="home_footer">
+  	<!--   <div class="home_footer"> -->
     		<bstabbar></bstabbar>     
-  		</div> 
+  		<!-- </div>  -->
 	</div>
 </template>
 
@@ -37,9 +37,21 @@ export default {
 }
 </script>
 <style scoped>
+.BookStore{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}
 .content {
 	width: 100%;
-	height: 75%;
-	margin-top: 15%;
+	height: 84%;
+  position: fixed;
+	top: 6%;
+  bottom: 10%;
+  right: 0;
+  left: 0;
 }
 </style>
