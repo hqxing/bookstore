@@ -15,46 +15,20 @@
   </div>
 
   <!-- 流行 -->
-   
+  <p v-model="books_popular_list" class="popular_title">{{books_popular_list.tags}}</p>
   <div class="popular">
- <p v-model="books_popular_list" class="popular_title">{{books_popular_list.tags}}</p>
-<!--     <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :max-distance="150" @top-status-change="handleTopChange" ref="loadmore">   -->
-<<<<<<< HEAD
-     <!--  <ul v-infinite-scroll="loadMore"
-         infinite-scroll-disabled="loading"
-         infinite-scroll-distance="5">
-       <li v-for="item in popular_books_list.books">
-         <img :src="item.image" alt="">
-         <span>{{item.title}}</span>
-       </li>
-     </ul> -->
-    <div v-infinite-scroll="loadMore"
-         infinite-scroll-disabled="loading"
-         infinite-scroll-distance="5">
-      <div v-for="item in popular_books_list.books"  class="novel_content">
-        <div class="novel_list_left"><img :src="item.image" alt=""></div>
-        <div class="novel_list_right"><span>{{item.title}}</span></div>      
+    
+      <div v-for="item in books_popular_list.books"  class="popular_content">
+        <div class="popular_list_left"><img :src="item.images.medium" alt=""></div>
+        <div class="popular_list_right">
+          <p><span>{{item.title}}</span></p>
+          <p>作者：{{item.author}}</p>
+          <p>出版社：{{item.publisher}}</p>
+          <p>价格：{{item.price}}元</p>
+        </div>      
       </div>     
-    </div>
-
-
-
-=======
-   <!-- <ul v-infinite-scroll="loadMore"
-       infinite-scroll-disabled="loading"
-       infinite-scroll-distance="10"> -->
-       <div  class="popular_list">
-         <ul>
-        <li v-for="item in books_popular_list.books">
-         <img :src="item.images.medium" alt="">
-          <span>{{item.title}}</span>
-        </li>
-   </ul> 
-       </div>
-     
->>>>>>> 45ed030342551645516a7775bdd73ae564ee797d
-<!--     </mt-loadmore> -->
   </div>
+
  </div> 
 </template>
 
@@ -66,25 +40,17 @@ export default {
     return {
       /*要搜索的值*/
       value:' ',
-     // searchCondition:{  //分页属性  
-    //    pageNo:"1",  
-    //      pageSize:"10"  
-    //  },  
+      /*流行书榜*/ 
       books_popular_list:{
         tags:'liuxing',
         books:[]
       },
-
-      //allLoaded: false, //是否可以上拉属性，false可以上拉，true为禁止上拉，就是不让往上划加载数据了  
-      //scrollMode:"auto" //移动端弹性滚动效果，touch为弹性滚动，auto是非弹性滚动  
-
     }
   },
   mounted() {
     var vm = this;
-    /*活动列表*/
+    /*获取流行书榜*/
     vm.getList();
-   // vm.loadMore();
   },
   methods: {
     /*请求流行书榜*/
@@ -105,137 +71,86 @@ export default {
     handleChange(index) {
       //console.log(index)
     },
-    /*加载更多*/
-   /* handleTopChange(){
-
-    },*/
-
-   /* loadMore:function(){
-      console.log("loadMore");                 
-    },*/
-   /* loadBottom:function() {
-      console.log("下拉在执行");
-      this.page=this.page+1;             
-      console.log("this.page:"+this.page);
-      this.getList(this.page);
-      if(this.page==10){
-        this.allLoaded=true;  //当所有数据 全部读取完成的时候 停止下拉读取数据 
-        //this.$refs.loadmore.onBottomLoaded();
-      }  
-    }*/
-    /*滚动条*/
-    // loadMore() {
-    //   var lm=this.books_popular_list;
-    //   console.log("lm",books_popular_list);
-    //   lm.loading = true;
-    //   setTimeout(() => {
-    //     let last = lm.books[lm.books.length - 1];
-    //     for (let i = 1; i <= 10; i++) {
-    //       lm.books.push(last + i);
-    //     }
-    //     lm.loading = false;
-    //   }, 2500);
-    // }
-
   }
 }
 </script>
 <style scoped>
 .home{
-	width: 50%;
+	width: 100%;
   height: 100%;
-  /* position: absolute; */
+  position: absolute;
 }
 .home_search_bar{
   position: fixed;
   width: 100%;
   height: 10%;
-  margin: auto;
-  top: 5%;
+  z-index: 1;
 } 
 .mint-search{
   position: relative;
-  width: 96%;
-  top: 10%;  
+  width: 100%; 
 }
 .mint-searchbar {
  color: #f3f1f1 ;
 }
 .home_swipe {
   position: fixed;
-  width: 96%;
+  width: 100%;
   height: 30%;
   top: 14%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  z-index: 1; 
+}
+.popular_title{
+  position: fixed; 
+  width: 100%;
+  height: 1.25rem; 
+  font-size: 1.25rem;
+  line-height:1.25rem; 
+  top: 41%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: yellow;
+  z-index: 1;
+}
+.popular {
+  position: relative;
+  width: 100%;
+  height: 53%;
+  top: 50%;
+  bottom:0;
+  left:0;
+  right:0;  
 }
 
-.novel_content{
+.popular .popular_content{
+  position: relative;
   width: 100%;
-  display: block;
+  height:55% ;
+  top: 0%;
 }
-.novel_list_left{
-  width: 20%;
+.popular .popular_content .popular_list_left{
+  width: 30%;
   margin: 1%;
   float: left;
-  display: block;
 }  
-.novel_list_right{
-  width: 80%;
+.popular .popular_content .popular_list_right{
+  width: 70%;
   margin: 1%;
-  margin-left: 22%;
-  float: left; 
-  display: block;  
+  margin-left: 32%;
 }
-
-.popular{
-  position: absolute; 
-  width: 100%;
-  height: 45%;
-  top: 45%;
+.popular .popular_content .popular_list_right p{
+  font-size: 1rem;
+  /* font-weight: bold; */
+  text-align: left;
 }
-.popular p{
-  position: absolute;
-  width: 100%;
-  height: 2rem;
-  background-color: yellow;
-  font-size:2rem;
-  line-height: 2rem;
-  top: 0;
-}
-.popular_list{
-  position: absolute; 
-  width: 100%;
-  height: 100%;
-  top: 15%;
-      overflow-y: scroll;
-      overflow-x: hidden; 
-}
-.popular_list ul{
-  position: absolute; 
-top: 40%;
-  width: 100%;
-  height: 100%;
-
-  
-
-}
-.popular_list ul li{
-  width: 100%;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-/*  .popular ul li img{
- width: 40%;
- height: 7rem;
-} 
-*/.popular_list ul li span{
-  width: 60%;
-}
-.home_footer{
- position: fixed;
-  width: 96%;
-  height: 10%;
-  bottom: 0;
+.popular .popular_content .popular_list_right p span{
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: left;
 }
 div a:link{
   text-decoration: none;

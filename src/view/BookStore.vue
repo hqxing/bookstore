@@ -40,7 +40,7 @@ export default {
 .BookStore{
   width: 100%;
   height: 100%;
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   right: 0;
   left: 0;
@@ -48,10 +48,10 @@ export default {
 .content {
 	width: 100%;
 	height: 84%;
-  position: fixed;
-	top: 6%;
-  bottom: 10%;
+  position: absolute;
+  top: 6%;
+  bottom: 0;
   right: 0;
-  left: 0;
+  left: 0; 
 }
 </style>
