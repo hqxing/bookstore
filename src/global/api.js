@@ -22,7 +22,8 @@ export const api = {
   "books_popular_list":"/bookstore/books_popular_list" ,
   "novel_list":"/books_classification/novel",
   "history_list":"/books_classification/history",
-  "travel_list":"/books_classification/travel",           
+  "travel_list":"/books_classification/travel",  
+  'users':url.staticPath+'/dataJson/users.json',         
 }
     
 

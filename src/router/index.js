@@ -6,6 +6,7 @@ import SignIn from '@/view/SignIn'
 import BookStore from '@/view/BookStore'
 import Home from '@/view/Home'
 import Classification from '@/view/Classification'
+import BookMsg from '@/view/BookMsg'
 import Person from '@/view/Person'
 import ShoppingCar from '@/view/ShoppingCar'
 
@@ -39,9 +40,15 @@ export default new Router({
                 path:'Person',
                 name:'Person',
                 component:Person
-            }
+            },          
 
          ]
+    },
+    /*书的详细内容*/
+    {
+        path:'/BookMsg/:id',
+        name:'BookMsg',
+        component:BookMsg,
     },
     /*登录*/
     {

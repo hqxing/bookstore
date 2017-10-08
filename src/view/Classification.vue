@@ -11,10 +11,13 @@
 
 <mt-tab-container v-model="selected">
   <mt-tab-container-item id="1">
-    <div v-for="item in novel_list.books"  class="Classification_content">
+    <div v-for="(item,index) in novel_list.books" class="Classification_content"  @click="showMore(item)">
       <div class="list_left"><img :src="item.images.medium" alt=""></div>
       <div class="list_right">
-        <p><span>{{item.title}}</span></p>
+        <p>
+          <span>{{item.title}}</span>
+          <img src="../assets/images/collect.png" v-on:click="collectClick()">
+        </p>
         <p>作者：{{item.author}}</p>
         <p>出版社：{{item.publisher}}</p>
         <p>
@@ -26,10 +29,13 @@
   </mt-tab-container-item>
 
   <mt-tab-container-item id="2">
-    <div v-for="item in history_list.books"  class="Classification_content">
+    <div v-for="item in history_list.books"  class="Classification_content" @click="showMore(item)">
       <div class="list_left"><img :src="item.images.medium" alt="" v-model="addCar" id="addCar"></div>
       <div class="list_right">
-        <p><span>{{item.title}}</span></p>
+        <p>
+          <span>{{item.title}}</span>
+          <img src="../assets/images/collect.png" v-on:click="collectClick()">
+        </p>
         <p>作者：{{item.author}}</p>
         <p>出版社：{{item.publisher}}</p>
         <p>
@@ -41,10 +47,13 @@
   </mt-tab-container-item>
 
   <mt-tab-container-item id="3">
-    <div v-for="item in travel_list.books"  class="Classification_content">
+    <div v-for="item in travel_list.books"  class="Classification_content" @click="showMore(item)">
       <div class="list_left"><img :src="item.images.medium" alt=""></div>
       <div class="list_right">
-        <p><span>{{item.title}}</span></p>
+        <p>
+          <span>{{item.title}}</span>
+          <img src="../assets/images/collect.png" v-on:click="collectClick()">
+        </p>
         <p>作者：{{item.author}}</p>
         <p>出版社：{{item.publisher}}</p>
         <p>
@@ -71,7 +80,7 @@
   margin-bottom: 1%;
 }
 .mint-tab-container-item {
-    height: 100%;
+  height: 100%;
 }
 .Classification_content{
   width: 100%;
@@ -167,6 +176,11 @@ import { Toast } from 'mint-ui';
           console.log('失败回调')    
         });
       },
+      /*点击得到更多内容*/
+      showMore: function (str) {       
+        console.log("书详细信息",str);
+
+      },
       /*加入购物车*/
       addCarClick(){
         var vm = this;
@@ -174,6 +188,12 @@ import { Toast } from 'mint-ui';
         console.log("确认添加到购物车",addCar);
         Toast('成功添加到购物车');
       },
+      /*收藏*/
+      collectClick(){
+        var vm = this;
+        console.log("确认收藏");
+        Toast('成功收藏');
+      }
 
 
     },  

@@ -21,7 +21,10 @@
       <div v-for="item in books_popular_list.books"  class="popular_content">
         <div class="popular_list_left"><img :src="item.images.medium" alt=""></div>
         <div class="popular_list_right">
-          <p><span>{{item.title}}</span></p>
+          <p>
+            <span>{{item.title}}</span>
+            <img src="../assets/images/collect.png" v-on:click="collectClick()">
+          </p>
           <p>作者：{{item.author}}</p>
           <p>出版社：{{item.publisher}}</p>
           <p>价格：{{item.price}}元</p>
@@ -71,6 +74,12 @@ export default {
     handleChange(index) {
       //console.log(index)
     },
+    /*收藏*/
+    collectClick(){
+      var vm = this;
+      console.log("确认收藏");
+      Toast('成功收藏');
+    }
   }
 }
 </script>
@@ -109,11 +118,13 @@ export default {
   height: 1.25rem; 
   font-size: 1.25rem;
   line-height:1.25rem; 
+  color: white;
+  padding: 1%;
   top: 41%;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: yellow;
+  background-color: #89C4F4;
   z-index: 1;
 }
 .popular {
@@ -151,6 +162,11 @@ export default {
   font-size: 1rem;
   font-weight: bold;
   text-align: left;
+}
+.popular .popular_content .popular_list_right p img{
+  width: 16px;
+  height: 16px;
+  margin-left: 2rem;
 }
 div a:link{
   text-decoration: none;
