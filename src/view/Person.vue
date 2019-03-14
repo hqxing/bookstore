@@ -5,9 +5,18 @@
 			<p>{{current_user.userName}}</p>
 			<p></p>
 			<div class="allMes">
-				<div class="my_collect"><i class="iconfont icon-shoucang1 shoucang1"></i><span>我的收藏</span></div>
-				<div class="my_order_form"><i class="iconfont icon-dingdan dingdan"></i><span>我的订单</span></div>
-				<div class="sign_out"><i class="iconfont icon-tuichu tuichu"></i><span>退出登录</span></div>
+				<router-link to="/Collect">
+					<div class="my_collect"><i class="iconfont icon-shoucang1 shoucang1"></i><span>我的收藏</span></div>
+				</router-link>
+				<router-link to="/Order">
+					<div class="my_order_form"><i class="iconfont icon-dingdan dingdan"></i><span>我的订单</span></div>
+				</router-link>
+				<router-link to="/Donation">
+					<div class="my_donation"><i class="love1 bs-icon-love-b1"></i><span>我的捐赠</span></div>
+				</router-link>
+				<router-link to="/SignIn">
+					<div class="sign_out"><i class="iconfont icon-tuichu tuichu"></i><span>退出登录</span></div>
+				</router-link>
 			</div>
 			
 		</div>
@@ -18,6 +27,10 @@
 
 <style scoped>
 @import "../assets/css/iconfont.css";
+	a {
+		text-decoration: none;
+		color: #2c3e50;
+	}
 	.personMes{
 		display: -webkit-flex; /* 弹性布局兼容Safari */
   		display: flex;
@@ -27,6 +40,7 @@
   		justify-content:flex-start;/* 项目在主轴上左对齐 */
   		align-items: flex-start;/* 交叉轴的起点对齐 */
   		align-content: flex-start;/* 多根轴线的对齐方式与交叉轴的起点对齐 */
+  		text-align: left;  		
 	}
 	.personMes img{
 		width: 6.25rem;
@@ -50,7 +64,7 @@
   		flex-wrap:wrap;
 		justify-content:flex-start;
 	}
-	.allMes .my_collect,.allMes .my_order_form,.allMes .sign_out{
+	.allMes .my_collect,.allMes .my_order_form,.allMes .sign_out,.allMes .my_donation{
 		flex-basis: auto;
 		flex-grow: 1;
 		width: 100%;
@@ -60,9 +74,14 @@
 		width: 100%;
 		margin-bottom: 1rem;
 		/* padding-left: 0.4rem; */
-		border-bottom: 1px solid gray;
+		border-bottom: 1px solid #eeeeee;
+		padding:0 20px;
 	}
-	.allMes .my_collect .shoucang1,.allMes .my_order_form .dingdan,.allMes .sign_out .tuichu{
+	.allMes .my_donation i {
+		font-family:"bs-font" !important;
+		font-style: normal;
+	}
+	.allMes .my_collect .shoucang1,.allMes .my_order_form .dingdan,.allMes .sign_out .tuichu,.allMes .love1{
         color: #1296db;
         font-size: 1.875rem;
         margin-right: 3rem;

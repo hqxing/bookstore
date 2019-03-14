@@ -40,6 +40,10 @@ export default {
 	background-size: cover; 
 	text-align: center;
 	position: fixed;
+	left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
 }
 .sign_up_warp{
 	background-color:rgba(0,0,0,0.2);

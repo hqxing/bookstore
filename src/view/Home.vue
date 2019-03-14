@@ -8,16 +8,16 @@
   <!-- 轮播 -->
   <div class="home_swipe">
     <mt-swipe :auto="2000" @change="handleChange">
-      <mt-swipe-item class="swip-item-1 item"><img src="../assets/images/01.jpg" alt=""></mt-swipe-item>
-      <mt-swipe-item class="swip-item-2 item"><img src="../assets/images/02.jpg" alt=""></mt-swipe-item>
-      <mt-swipe-item class="swip-item-3 item"><img src="../assets/images/03.jpg" alt=""></mt-swipe-item>
+      <mt-swipe-item class="swip-item-1 item"><a href="https://guangzhou.douban.com/"><img src="../assets/images/01.jpg" alt=""></a></mt-swipe-item>
+      <mt-swipe-item class="swip-item-2 item"><a href="https://beijing.douban.com/"><img src="../assets/images/02.jpg" alt=""></a></mt-swipe-item>
+      <mt-swipe-item class="swip-item-3 item"><a href="https://shanghai.douban.com/"><img src="../assets/images/03.jpg" alt=""></a></mt-swipe-item>
     </mt-swipe>
   </div>
 
-  <!-- 流行 -->
+  <!-- 推荐 -->
   <p v-model="books_popular_list" class="popular_title">{{books_popular_list.tags}}</p>
   <div class="popular">
-    
+    <div class="popular_warp">
       <div v-for="item in books_popular_list.books"  class="popular_content">
         <div class="popular_list_left"><img :src="item.images.medium" alt=""></div>
         <div class="popular_list_right">
@@ -27,9 +27,13 @@
           </p>
           <p>作者：{{item.author}}</p>
           <p>出版社：{{item.publisher}}</p>
-          <p>价格：{{item.price}}元</p>
+          <p>价格：{{item.price}}元
+            <img src="../assets/images/add_car.png" v-on:click="addCarClick()">
+            <span class="donate"></span>
+          </p>
         </div>      
-      </div>     
+      </div>    
+    </div> 
   </div>
 
  </div> 
@@ -52,11 +56,11 @@ export default {
   },
   mounted() {
     var vm = this;
-    /*获取流行书榜*/
+    /*获取推荐书榜*/
     vm.getList();
   },
   methods: {
-    /*请求流行书榜*/
+    /*请求推荐书榜*/
     getList () {
         var vm = this;
         vm.$http.get(api.books_popular_list,{typeFlag:'1'}).then((response) => {
@@ -128,20 +132,19 @@ export default {
   z-index: 1;
 }
 .popular {
-  position: relative;
+  position: absolute;
   width: 100%;
-  height: 53%;
-  top: 50%;
-  bottom:0;
-  left:0;
-  right:0;  
+  top: 51%;
+  bottom: 55px;
 }
-
-.popular .popular_content{
+.popular_warp {
   position: relative;
+  overflow-x: hidden;
+  margin-bottom: 55px;
+}
+.popular .popular_content{
   width: 100%;
-  height:55% ;
-  top: 0%;
+  clear: both;
 }
 .popular .popular_content .popular_list_left{
   width: 30%;
@@ -149,7 +152,7 @@ export default {
   float: left;
 }  
 .popular .popular_content .popular_list_right{
-  width: 70%;
+  width: 60%;
   margin: 1%;
   margin-left: 32%;
 }
@@ -172,5 +175,13 @@ div a:link{
   text-decoration: none;
   color: #2c3e50;
 }
-
+.donate {
+  font-family:"bs-font" !important;
+  font-size: 16px;
+  color: #26a2ff;
+  margin-left: 10px;
+}
+.donate:before {
+  content: "\e60c";
+}
 </style>

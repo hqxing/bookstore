@@ -13,6 +13,13 @@ import store from './store/index'
 // import './assets/fonts/mui.ttf'
 // import './assets/css/test.css'
 // import './assets/js/mui.js'
+
+// import './assets/fonts/iconfont.eot'
+// import './assets/fonts/iconfont.ttf'
+// import './assets/fonts/iconfont.woff'
+// import './assets/fonts/iconfont.svg'
+
+import './assets/css/bs-font.css'
 Vue.use(Vuex);
 Vue.use(MintUI);
 Vue.use(VueResource);

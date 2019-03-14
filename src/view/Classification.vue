@@ -11,7 +11,7 @@
 
 <mt-tab-container v-model="selected">
   <mt-tab-container-item id="1">
-    <div v-for="(item,index) in novel_list.books" class="Classification_content"  @click="showMore(item)">
+    <div v-for="(item,index) in novel_list.books" class="Classification_content"  @click="showMore(item.book_id)">
       <div class="list_left"><img :src="item.images.medium" alt=""></div>
       <div class="list_right">
         <p>
@@ -23,13 +23,14 @@
         <p>
           价格：{{item.price}}元
           <img src="../assets/images/add_car.png" v-on:click="addCarClick()">
+          <span class="donate"></span>
         </p>
       </div>      
     </div>
   </mt-tab-container-item>
 
   <mt-tab-container-item id="2">
-    <div v-for="item in history_list.books"  class="Classification_content" @click="showMore(item)">
+    <div v-for="item in history_list.books"  class="Classification_content" @click="showMore(item.book_id)">
       <div class="list_left"><img :src="item.images.medium" alt="" v-model="addCar" id="addCar"></div>
       <div class="list_right">
         <p>
@@ -47,7 +48,7 @@
   </mt-tab-container-item>
 
   <mt-tab-container-item id="3">
-    <div v-for="item in travel_list.books"  class="Classification_content" @click="showMore(item)">
+    <div v-for="item in travel_list.books"  class="Classification_content" @click="showMore(item.book_id)">
       <div class="list_left"><img :src="item.images.medium" alt=""></div>
       <div class="list_right">
         <p>
@@ -79,13 +80,16 @@
   height: 10%;
   margin-bottom: 1%;
 }
+.mint-tab-container {
+  margin-bottom: 55px;
+}
 .mint-tab-container-item {
   height: 100%;
 }
 .Classification_content{
-  width: 100%;
   height: 20%;
   padding: 1%;
+  clear: both;
 }
 .Classification_content .list_left{
   width: 30%;
@@ -93,7 +97,7 @@
   float: left;
 }  
 .Classification_content .list_right{
-  width: 70%;
+  width: 62%;
   height: 20%;
   margin-left: 32%;
 }
@@ -111,6 +115,15 @@
   width: 16px;
   height: 16px;
   margin-left: 2rem;
+}
+.donate {
+  font-family:"bs-font" !important;
+  font-size: 16px;
+  color: #26a2ff;
+  margin-left: 10px;
+}
+.donate:before {
+  content: "\e60c";
 }
 </style>
 
@@ -178,8 +191,9 @@ import { Toast } from 'mint-ui';
       },
       /*点击得到更多内容*/
       showMore: function (str) {       
-        console.log("书详细信息",str);
-
+        console.log("书id",str);
+        const path = '/BookMsg/itemMoreMes/?id=' + str;
+        this.$router.push({path: path});
       },
       /*加入购物车*/
       addCarClick(){

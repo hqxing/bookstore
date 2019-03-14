@@ -50,6 +50,20 @@ module.exports = {
                 pathRewrite: {
                   '^/books_classification': '/books_classification'
                 }
+        },
+        '/allMoreMes': {
+                target: 'https://easy-mock.com/mock/59a765e44006183e48ed4cbe/bookstore',
+                changeOrigin : true,
+                pathRewrite: {
+                  '^/allMoreMes': '/allMoreMes'
+                }
+        },
+        '/itemMoreMes': {
+                target: 'https://easy-mock.com/mock/59a765e44006183e48ed4cbe/bookstore',
+                changeOrigin : true,
+                pathRewrite: {
+                  '^/itemMoreMes': '/itemMoreMes'
+                }
         }
 
     },

@@ -1,78 +1,154 @@
 <template>
-  <div id="shop-cart">
-    <!--购物车-->
-    <div class="shop-cart">
-      <!--购物车商品类表-->
-      <div class="list-item">
-        <div class="shop-name">
-	        <!-- <label class="mint-checklist-label">
-	        		        <span class="mint-checkbox">
-	        		          <input type="checkbox" class="mint-checkbox-input"/>
-	        		          <span class="mint-checkbox-core"></span>
-	        		        </span>
-	        </label> -->
-          	<span>购物车列表</span>
-          	<mt-button class="clearBtn">清空</mt-button>
-        </div>
-        <ul class="product-list" v-for="(items,index) in itemMoreMes.books" :key="index">
-          <li class="item shop-info">
-            <div class="body-media">
-              <label class="mint-checklist-label">
-		        <span class="mint-checkbox">
-		          <input type="checkbox" class="mint-checkbox-input"/>
-		          <span class="mint-checkbox-core"></span>
-		        </span>
-	          </label>
-              <img class="product-img" :src="items.images.small">
-              <div class="info">
-                <div class="txt">
-                  <p class="name">{{items.title}}</p>
-                  <!-- <p class="einheit">作者：{{items.author}}</p> -->
-                  <p class="price"> <em class="price1">￥{{items.price}}</em></p>
-                  <div class="num-btn">
-	                <span class="box">
-	                  <em class="reduce"></em>
-	                  <!-- <span class="number">{{items.number}}</span> -->
-	                  <span class="number"><input type="text" v-model="items.number"></span>
-	                  <em class="add"></em>
-	                </span>
-            	  </div>
-                </div>
-                <span class="del bs-icon-hongcha" @click="del()"></span>
-              </div>
-            </div>            
-          </li>
-        </ul>
-      </div>
-      <!--购物车底部按钮-->
-      <div class="bottomBar">
-        <p class="txt">
-          <span>
-            <label class="mint-checklist-label">
-		        <span class="mint-checkbox">
-		          <input type="checkbox" class="mint-checkbox-input"/>
-		          <span class="mint-checkbox-core"></span>
-		        </span>
-	        </label>
-            全选
-            <!-- <mt-button class="clearBtn">删除</mt-button> -->
-          </span>
+	<div class="Donation">
+		<mt-header title="我的捐赠">
+		    <router-link to="/BookStore/Person" slot="left">
+		      <mt-button icon="back">返回</mt-button>      
+		    </router-link>    
+  		</mt-header>
+		<div class="Classification_head">
+    		<!-- <p>分类</p> -->
+    		<mt-navbar v-model="selected">
+	      		<mt-tab-item id="1">心愿单</mt-tab-item>
+	     		<mt-tab-item id="2">已捐赠</mt-tab-item>	      		
+    		</mt-navbar>  
+  		</div>
+  		<mt-tab-container v-model="selected">
+  			<mt-tab-container-item id="1">    		
+				    <div class="shop-cart">
+				      <!--要捐赠的商品列表-->
+				      <div class="list-item">
+				        <div class="shop-name">
+					        <!-- <label class="mint-checklist-label">
+					        		        <span class="mint-checkbox">
+					        		          <input type="checkbox" class="mint-checkbox-input"/>
+					        		          <span class="mint-checkbox-core"></span>
+					        		        </span>
+					        </label> -->
+				          	<span>心愿清单</span>
+				          	<mt-button class="clearBtn">清空</mt-button>
+				        </div>
+				        <ul class="product-list" v-for="(items,index) in itemMoreMes.books" :key="index">
+				          <li class="item shop-info">
+				            <div class="body-media">
+				              <label class="mint-checklist-label">
+						        <span class="mint-checkbox">
+						          <input type="checkbox" class="mint-checkbox-input"/>
+						          <span class="mint-checkbox-core"></span>
+						        </span>
+					          </label>
+				              <img class="product-img" :src="items.images.small">
+				              <div class="info">
+				                <div class="txt">
+				                  <p class="name">{{items.title}}</p>
+				                  <!-- <p class="einheit">作者：{{items.author}}</p> -->
+				                  <p class="price"> <em class="price1">￥{{items.price}}</em></p>
+				                  <div class="num-btn">
+					                <span class="box">
+					                  <em class="reduce"></em>
+					                  <!-- <span class="number">{{items.number}}</span> -->
+					                  <span class="number"><input type="text" v-model="items.number"></span>
+					                  <em class="add"></em>
+					                </span>
+				            	  </div>
+				                </div>
+				                <span class="del bs-icon-hongcha" @click="del()"></span>
+				              </div>
+				            </div>            
+				          </li>
+				        </ul>
+				      </div>
+				      <!--购物车底部按钮-->
+				      <div class="bottomBar">
+				        <p class="txt">
+				          <span>
+				            <label class="mint-checklist-label">
+						        <span class="mint-checkbox">
+						          <input type="checkbox" class="mint-checkbox-input"/>
+						          <span class="mint-checkbox-core"></span>
+						        </span>
+					        </label>
+				            全选
+				            <!-- <mt-button class="clearBtn">删除</mt-button> -->
+				          </span>
 
-          <span>
-            合计：{{itemMoreMes.totalPrice}}元
-          </span>
-        </p>
-        <mt-button v-on:click="sub()">提交（{{itemMoreMes.totalNum}}）</mt-button>
-      </div>
-    </div>
+				          <span>
+				            合计：{{itemMoreMes.totalPrice}}元
+				          </span>
+				        </p>
+				        <mt-button v-on:click="sub()">提交（{{itemMoreMes.totalNum}}）</mt-button>
+				      </div>
+				    </div>
+  			</mt-tab-container-item>
 
-    <!--购物车为空提示-->
-    <!-- <div class="toastTxt">购物车为空</div> -->
-
-  </div>
+  			<mt-tab-container-item id="2">    
+				<div class="orderContentWrap">
+				  	<div class="orderContent">
+				  		<div class="orderContentTitle">
+				  			<p class="total_row">
+				  				<span class="total_price">总价:￥110.0</span>
+				  				<span class="total_num">共4件商品</span>
+				        		<span class="bs-icon-shousuo"></span>
+				        	</p>
+				        	<p class="time_row">
+				  				<span class="time_date">2018-5-03 09:18:11</span>
+				  			</p>
+				      	</div>
+				    	<div class="Content">
+				    		<p class="book_row">
+				    			<span class="book_name">我的前半生</span>
+				    			<span class="book_price">￥22.0</span>
+				    		</p>
+				        	<p class="book_row">
+				    			<span class="book_name">亲爱的安德烈</span>
+				    			<span class="book_price">￥26.0</span>
+				    		</p>
+				    		<p class="book_row">
+				    			<span class="book_name">给孩子的故事</span>
+				    			<span class="book_price">￥42.0</span>
+				    		</p>
+				    		<p class="book_row">
+				    			<span class="book_name">窗边的小豆豆</span>
+				    			<span class="book_price">￥20.0</span>
+				    		</p>
+				    	</div>
+				  	</div>  
+				  	<div class="orderContent">
+				  		<div class="orderContentTitle">
+				  			<p class="total_row">
+				  				<span class="total_price">总价:￥101.6</span>
+				  				<span class="total_num">共3件商品</span>
+				        		<span class="bs-icon-shousuo"></span>
+				  			</p>
+				  			<p class="time_row">
+				  				<span class="time_date">2018-4-12 13:28:01</span>
+				  			</p>
+				      	</div>
+				    	<div class="Content">
+				    		<p class="book_row">
+				    			<span class="book_name">沉睡的人鱼之家</span>
+				    			<span class="book_price">￥39.8</span>
+				    		</p> 
+				    		<p class="book_row">
+				    			<span class="book_name">与火同行</span>
+				    			<span class="book_price">￥49.8</span>
+				    		</p> 
+				    		<p class="book_row">
+				    			<span class="book_name">活着</span>
+				    			<span class="book_price">￥12.0</span>
+				    		</p>        	
+				    	</div>
+				  	</div> 	
+				</div>
+  			</mt-tab-container-item>
+		</mt-tab-container>
+	</div>
 </template>
 <style scoped>
-
+.mint-header {
+	margin-left: -10px !important;
+	margin-right: -10px !important;
+	margin-top: -10px !important;
+}
 input[type='radio'] {
     font-family:"bs-font" !important;
   font-size:16px;
@@ -90,15 +166,17 @@ input[type='radio']:checked:before {
         line-height: 1.2rem;
         margin-left: 1px;
 }
-#shop-cart {
+/* 心愿单样式 */
+.shop-cart {
   margin-bottom: 95px;
   text-align: left;
+  margin-top: 10px;
 }
-#shop-cart .list-item {
+.shop-cart .list-item {
   margin-bottom: 10px;
   background: #ffffff;
 }
-#shop-cart .list-item .shop-name {
+.shop-cart .list-item .shop-name {
   position: relative;
   height: 40px;
   border-bottom: 1px solid #eeeeee;
@@ -109,27 +187,27 @@ input[type='radio']:checked:before {
   align-items: center;
   /*垂直居中*/
 }
-#shop-cart .list-item .shop-name span {
+.shop-cart .list-item .shop-name span {
 	width: 90%;
 }
-#shop-cart .list-item .shop-name .radio {
+.shop-cart .list-item .shop-name .radio {
   position: relative;
   width: 20px;
   height: 20px;
   vertical-align: middle;
 }
-#shop-cart .list-item .shop-name .adminAvatar {
+.shop-cart .list-item .shop-name .adminAvatar {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   margin: 0 5px 0 10px;
 }
-#shop-cart .list-item .shop-name em {
+.shop-cart .list-item .shop-name em {
   font-size: 14px;
   color: #1B1B1B;
   padding-right: 10px;
 }
-/* #shop-cart .list-item .shop-name em:after {
+/* .shop-cart .list-item .shop-name em:after {
   content: "";
   display: inline-block;
   vertical-align: middle;
@@ -140,17 +218,17 @@ input[type='radio']:checked:before {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 } */
-#shop-cart .list-item .product-list {
+.shop-cart .list-item .product-list {
   padding: 0 10px;
   margin: 0px auto;
 }
-#shop-cart .list-item .product-list .item {
+.shop-cart .list-item .product-list .item {
   position: relative;
   padding: 10px 0 10px 0;
   display: block;
   border-bottom: 1px solid #eeeeee;
 }
-#shop-cart .list-item .product-list .item .body-media {
+.shop-cart .list-item .product-list .item .body-media {
   position: relative;
   display: flex;
   display: -webkit-flex;
@@ -158,30 +236,30 @@ input[type='radio']:checked:before {
   /*垂直居中*/
   -webkit-align-items: center;
 }
-#shop-cart .list-item .product-list .item .body-media .product-img {
+.shop-cart .list-item .product-list .item .body-media .product-img {
   /* width: 100px;
   height: 60px; */
   margin-left: 10px;
 }
-#shop-cart .list-item .product-list .item .body-media .info {
+.shop-cart .list-item .product-list .item .body-media .info {
   flex: 1;
   -webkit-flex: 1;
   display: flex;
   display: -webkit-flex;
   margin-left: 10px;
 }
-#shop-cart .list-item .product-list .item .body-media .info .txt {
+.shop-cart .list-item .product-list .item .body-media .info .txt {
   flex: 1;
   -webkit-flex: 1;
 }
-#shop-cart .list-item .product-list .item .body-media .info .txt .name {
+.shop-cart .list-item .product-list .item .body-media .info .txt .name {
   font-size: 1rem;
   color: #1B1B1B;
   height: 30px;
   line-height: 30px;
   margin:5px auto;
 }
-#shop-cart .list-item .product-list .item .body-media .info .txt .einheit {
+.shop-cart .list-item .product-list .item .body-media .info .txt .einheit {
   font-size: 1rem;
   height: 30px;
   color: #959595;
@@ -191,18 +269,18 @@ input[type='radio']:checked:before {
   -webkit-justify-content: space-between;
   margin:5px auto;
 }
-#shop-cart .list-item .product-list .item .body-media .info .txt .price {
+.shop-cart .list-item .product-list .item .body-media .info .txt .price {
   font-size: 1rem;
   color: #888;
   display: flex;
   display: -webkit-flex;
   margin:5px auto;
 }
-#shop-cart .list-item .product-list .item .body-media .info .txt .price .spec {
+.shop-cart .list-item .product-list .item .body-media .info .txt .price .spec {
   color: #959595;
   font-size: 12px;
 }
-#shop-cart .list-item .product-list .item .body-media .info .txt .cMailTex {
+.shop-cart .list-item .product-list .item .body-media .info .txt .cMailTex {
   color: #ff0000;
   font-size: 14px;
   flex: 1;
@@ -212,10 +290,10 @@ input[type='radio']:checked:before {
   justify-content: flex-end;
   -webkit-justify-content: flex-end;
 }
-#shop-cart .list-item .product-list .item .body-media .info .txt .cMailTex em {
+.shop-cart .list-item .product-list .item .body-media .info .txt .cMailTex em {
   text-align: right;
 }
-#shop-cart .list-item .product-list .item .body-media .info .del {
+.shop-cart .list-item .product-list .item .body-media .info .del {
   width: 18px;
   height: 18px;
   font-family:"bs-font" !important;
@@ -231,20 +309,20 @@ input[type='radio']:checked:before {
   background: red;
 }
 .del:before { content: "\e60f"; }
-/* #shop-cart .list-item .product-list .item .body-media .info .del img {
+/* .shop-cart .list-item .product-list .item .body-media .info .del img {
   width: 100%;
 } */
-#shop-cart .list-item .product-list .item .num-btn {
+.shop-cart .list-item .product-list .item .num-btn {
   display: flex;
   display: -webkit-flex;
   padding: 0 0 10px 0;
   justify-content: flex-end;
 }
-#shop-cart .list-item .product-list .item .num-btn .box {
+.shop-cart .list-item .product-list .item .num-btn .box {
   display: flex;
   display: -webkit-flex;
 }
-#shop-cart .list-item .product-list .item .num-btn .reduce {
+.shop-cart .list-item .product-list .item .num-btn .reduce {
   width: 30px;
   display: inline-block;
   font-family:"bs-font" !important;
@@ -256,7 +334,7 @@ input[type='radio']:checked:before {
   -moz-osx-font-smoothing: grayscale;
 }
 .reduce:before { content: "\e635"; }
-#shop-cart .list-item .product-list .item .num-btn .add {
+.shop-cart .list-item .product-list .item .num-btn .add {
   width: 30px;
   display: inline-block;
   font-family:"bs-font" !important;
@@ -268,11 +346,11 @@ input[type='radio']:checked:before {
   -moz-osx-font-smoothing: grayscale;
 }
 .add:before { content: "\e619"; }
-#shop-cart .list-item .product-list .item .num-btn .reduce:active,
-#shop-cart .list-item .product-list .item .num-btn .add:active {
+.shop-cart .list-item .product-list .item .num-btn .reduce:active,
+.shop-cart .list-item .product-list .item .num-btn .add:active {
   background: #cccccc;
 }
-#shop-cart .list-item .product-list .item .num-btn .number {
+.shop-cart .list-item .product-list .item .num-btn .number {
   padding: 0;
   width: 40px;
   font-size: 14px;
@@ -284,16 +362,16 @@ input[type='radio']:checked:before {
   display: inline-block;
   text-align: center;
 }
-#shop-cart .list-item .product-list .item .num-btn .number input {
+.shop-cart .list-item .product-list .item .num-btn .number input {
 	width: 100%;
 	text-align: center;
 }
-#shop-cart #invalidList {
+.shop-cart #invalidList {
   background: #fff;
   padding-bottom: 0.13rem;
   display: none;
 }
-#shop-cart #invalidList .topTitle {
+.shop-cart #invalidList .topTitle {
   display: flex;
   display: -webkit-flex;
   justify-content: space-between;
@@ -307,25 +385,25 @@ input[type='radio']:checked:before {
   color: #1B1B1B;
   border-bottom: 1px solid #cccccc;
 }
-/* #shop-cart #invalidList .topTitle em#clearBtn {
+/* .shop-cart #invalidList .topTitle em#clearBtn {
   color: #ff0000;
 } */
-#shop-cart #invalidList .product-list {
+.shop-cart #invalidList .product-list {
   padding: 0 0.42rem;
 }
-#shop-cart #invalidList .product-list .item {
+.shop-cart #invalidList .product-list .item {
   position: relative;
   padding: 0.2rem 0 0.2rem 0;
   border-bottom: 1px solid #eeeeee;
 }
-#shop-cart #invalidList .product-list .item .body-media {
+.shop-cart #invalidList .product-list .item .body-media {
   position: relative;
   display: flex;
   display: -webkit-flex;
   align-items: center;
   /*垂直居中*/
 }
-#shop-cart #invalidList .product-list .item .body-media .lebal {
+.shop-cart #invalidList .product-list .item .body-media .lebal {
   position: relative;
   padding: 0 0.26rem;
   background: #cccccc;
@@ -333,36 +411,36 @@ input[type='radio']:checked:before {
   vertical-align: middle;
   color: #ffffff;
 }
-#shop-cart #invalidList .product-list .item .body-media .product-img {
+.shop-cart #invalidList .product-list .item .body-media .product-img {
   width: 3.2rem;
   height: 2.13rem;
   margin-left: 0.26rem;
 }
-#shop-cart #invalidList .product-list .item .body-media .info {
+.shop-cart #invalidList .product-list .item .body-media .info {
   flex: 1;
   -webkit-flex: 1;
   display: flex;
   display: -webkit-flex;
   margin-left: 0.4rem;
 }
-#shop-cart #invalidList .product-list .item .body-media .info .txt {
+.shop-cart #invalidList .product-list .item .body-media .info .txt {
   flex: 1;
   -webkit-flex: 1;
 }
-#shop-cart #invalidList .product-list .item .body-media .info .txt .name {
+.shop-cart #invalidList .product-list .item .body-media .info .txt .name {
   font-size: 0.34rem;
   color: #cccccc;
   height: 1.4rem;
   line-height: 0.37rem;
   overflow: hidden;
 }
-#shop-cart #invalidList .product-list .item .body-media .info .txt .reason {
+.shop-cart #invalidList .product-list .item .body-media .info .txt .reason {
   color: #1B1B1B;
   margin-top: 0.13rem;
   font-size: 0.4rem;
   line-height: 0.37rem;
 }
-#shop-cart #invalidList .product-list .item .body-media .info .txt .cMailTex {
+.shop-cart #invalidList .product-list .item .body-media .info .txt .cMailTex {
   color: #ff0000;
   margin-top: 0.13rem;
   font-size: 0.4rem;
@@ -370,7 +448,7 @@ input[type='radio']:checked:before {
   justify-content: flex-end;
   -webkit-justify-content: flex-end;
 }
-#shop-cart #settlement-bar {
+.shop-cart #settlement-bar {
   display: flex;
   display: -webkit-flex;
   position: fixed;
@@ -382,42 +460,42 @@ input[type='radio']:checked:before {
   line-height: 1.17rem;
   z-index: 88;
 }
-#shop-cart #settlement-bar .all-check {
+.shop-cart #settlement-bar .all-check {
   font-size: 0.45rem;
   width: 2.4rem;
   color: #1B1B1B;
   padding-left: 0.42rem;
 }
-#shop-cart #settlement-bar .price-submit {
+.shop-cart #settlement-bar .price-submit {
   flex: 1;
   -webkit-flex: 1;
   display: flex;
   display: -webkit-flex;
   justify-content: flex-end;
 }
-#shop-cart #settlement-bar .price-submit .sum {
+.shop-cart #settlement-bar .price-submit .sum {
   font-size: 0.34rem;
   color: #1B1B1B;
   padding-right: 0.42rem;
 }
-#shop-cart #settlement-bar .price-submit .sum em {
+.shop-cart #settlement-bar .price-submit .sum em {
   margin-left: 0.42rem;
   color: #FF0000;
 }
-#shop-cart #settlement-bar .price-submit .submit-btn {
+.shop-cart #settlement-bar .price-submit .submit-btn {
   width: 3.33rem;
   background: #81d8d0;
   text-align: center;
   color: #fff;
   font-size: 0.34rem;
 }
-#shop-cart #settlement-bar .price-submit .submit-btn:active {
+.shop-cart #settlement-bar .price-submit .submit-btn:active {
   background: #ccc;
 }
 
 .bottomBar {
   position: fixed;
-  bottom: 54px;
+  bottom: 0;
   left: 0;
   width: 100%;
   height: 40px;
@@ -483,15 +561,67 @@ input[type='radio']:checked:before {
   justify-content: center;
   -webkit-justify-content: center;
 }
+/* 已捐赠样式 */
+	.orderContentWrap {
+		text-align: left;
+		padding-top: 10px;
+	}
+	.orderContent {
+		box-shadow: 1px 1px 5px #888888;
+		padding:5px;
+		margin-bottom: 5px;
+	}
+	.Content {
+		padding: 5px 0;
+	}
+	p {margin: 0;}
+	.orderContentTitle {
+		border-bottom:1px solid #ddd; 
+		padding:5px 0;
+		color:#333;		
+	}
+	.total_row,.book_row {
+		display:-webkit-box;
+		display:-webkit-flex;
+		display:-ms-flexbox;
+		display:flex;
+	}
+	.time_row {
+		font-size: 0.8rem;
+		color: #888;
+	}
+	.book_row {
+		color:#333;
+	}
+	.total_price,.total_num {
+		font-size: 1.1rem;
+		width: 40%;
+	}
+	.bs-icon-shousuo {
+		color:#333;
+		text-align: right;
+		width: 20%;
+		line-height: 1.1rem;
+		font-size: 0.9rem;
+	}
+	.book_name {
+		width: 70%;
+	}
+	.book_price {
+		width: 30%;
+		text-align: right;
+		color: #888; 
+	}
 </style>
 <script>
-import {MessageBox} from 'mint-ui';
+import {api} from '../global/api';
 import { Toast } from 'mint-ui';
-export default {
-	name: 'ShoppingCar',
-  	data () {
-    	return {
-    		itemMoreMes:{
+	export default {
+		name: 'Donation',
+		data () {
+		  	return {		  	
+		  		selected:"1",
+          		itemMoreMes:{
     			"totalPrice":"110",
     			"totalNum":"4",
           books:[
@@ -573,22 +703,23 @@ export default {
             }
           ]
         }
-    	}
-  	},
-  	methods: {
-  	 /*删除单项*/
-      del: function () {       
-        	MessageBox.confirm('确认删除该商品?').then(action => {
-  				Toast('成功删除该商品');
+		  	}
+		},
+    methods: {
+    	/*删除单项*/
+	    del: function () {       
+	        MessageBox.confirm('确认删除该商品?').then(action => {
+	  			Toast('成功删除该商品');
 			});			
-  		},
-      /*提交*/
+	  	},
+      	/*提交*/
   		sub: function () {
   			MessageBox.confirm('确认支付').then(action => {
   				const path = '/Order';
         		this.$router.push({path: path});
 			});	
   		}
-  	}		
-}
+    },  
+
+	}	
 </script>

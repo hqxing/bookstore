@@ -1,7 +1,7 @@
 <template>
 <!-- 导航头部 -->
 	<div class="bookstore_header">
-    	<mt-header fixed title="欢迎您">
+    	<mt-header fixed :title="routeName">
       		<mt-button icon="more" slot="right" @click="handleMore"></mt-button>
     	</mt-header> 
       <div class="bookstore_more_options" v-show="showMoreOptions">
@@ -22,10 +22,16 @@ export default {
 	name:'bs-header',
     data () {
         return {
-            showMoreOptions:false
+          showMoreOptions:false,
+          routeName:'众人书城'
         }
-    },
+    },   
     methods: {
+        /*头部标题显示路由*/
+        showHeadTitle() {
+          this.routeName=this.$route.name
+          console.log(this.routeName)
+        },
         /*点击头部更多菜单*/
         handleMore() {
             console.log("成功点击头部更多");
@@ -76,4 +82,5 @@ export default {
     list-style: none;
     text-align: center;
 }
+.mint-header {margin:0;}
 </style>

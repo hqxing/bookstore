@@ -9,7 +9,9 @@ import Classification from '@/view/Classification'
 import BookMsg from '@/view/BookMsg'
 import Person from '@/view/Person'
 import ShoppingCar from '@/view/ShoppingCar'
-
+import Order from '@/view/Order'
+import Collect from '@/view/Collect' 
+import Donation from '@/view/Donation' 
 Vue.use(Router)
 
 export default new Router({
@@ -39,7 +41,7 @@ export default new Router({
             {   /*个人*/
                 path:'Person',
                 name:'Person',
-                component:Person
+                component:Person                
             },          
 
          ]
@@ -48,7 +50,25 @@ export default new Router({
     {
         path:'/BookMsg/:id',
         name:'BookMsg',
-        component:BookMsg,
+        component:BookMsg
+    },
+    /*我的订单*/
+    {
+        path:'/Order',
+        name:'Order',
+        component:Order
+    },    
+    /*我的收藏*/
+    {
+        path:'/Collect',
+        name:'Collect',
+        component:Collect
+    },
+    /*我的捐赠*/
+    {
+        path:'/Donation',
+        name:'Donation',
+        component:Donation
     },
     /*登录*/
     {
